@@ -295,8 +295,8 @@ section {
     display: flex;
     align-items: flex-start;
     gap: 0.9rem;
-    padding: 1rem 1.2rem;
-    margin-bottom: 2rem;
+    padding: 1.15rem 1.35rem;
+    margin-bottom: 2.75rem;
     background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
     border: 1px solid #cfe0f5;
     border-radius: 1rem;
