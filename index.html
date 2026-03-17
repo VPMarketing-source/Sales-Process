@@ -23,8 +23,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Grow Your Business Revenue</h1>
-            <p>Your growth partner. We're here to help you grow your business through strategic marketing, streamlined with AI so you can focus on what matters.</p>
+            <h1>Your Partner in Smarter Business Growth</h1>
+            <p>We work alongside you to grow your revenue, improve marketing efficiency, and build systems that drive long-term success.</p>
             <a href="#final-cta" class="cta-button">Book Strategy Call</a>
         </div>
     </section>
@@ -91,6 +91,20 @@
                                     <p class="package-description">For enterprise growth & dominance</p>
                                 </div>
                             </th>
+                            <th class="services-column">
+                                <div class="package-header">
+                                    <div class="package-name">Estimated Services</div>
+                                    <div class="package-price">Estimated</div>
+                                    <p class="package-description">Pick individual services à la carte</p>
+                                </div>
+                            </th>
+                            <th class="custom-column">
+                                <div class="package-header">
+                                    <div class="package-name">Custom</div>
+                                    <div class="package-price">Let's Talk</div>
+                                    <p class="package-description">Tailored proposal for your unique needs</p>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -99,6 +113,8 @@
                             <td class="starter-feature"><span class="checkmark">✓</span></td>
                             <td class="growth-feature"><span class="checkmark">✓</span></td>
                             <td class="scale-feature"><span class="checkmark">✓</span></td>
+                            <td class="services-feature"><span class="x-mark">—</span></td>
+                            <td class="custom-feature"><span class="checkmark">✓</span></td>
                         </tr>
                         <tr>
                             <td class="feature-name">Meta Ads Management</td>
@@ -202,22 +218,34 @@
 
             <!-- Single Services Section -->
             <div class="single-services-section">
-                <h3 class="services-title">Or Choose Individual Services</h3>
+                <h3 class="services-title">Build an Estimated Monthly Scope</h3>
                 <p class="services-subtitle">Pick and choose the services you need à la carte</p>
                 
+                <div class="estimator-intro">
+                    <div class="estimator-copy">
+                        <h4>Ad management is quoted against account complexity</h4>
+                        <p>A business spending $100,000 per month needs a very different level of management than a smaller account. These figures are starting estimates, not fixed one-size-fits-all retainers.</p>
+                    </div>
+                    <div class="spend-estimator">
+                        <label for="monthly-ad-spend" class="spend-label">Estimated monthly ad spend</label>
+                        <input type="number" id="monthly-ad-spend" min="0" step="1000" value="10000" placeholder="10000">
+                        <p class="spend-help">Used to estimate Meta and Google Ads management pricing.</p>
+                    </div>
+                </div>
+
                 <div class="services-grid">
                     <div class="service-item">
-                        <input type="checkbox" id="service-meta-ads" class="service-checkbox" data-price="500" data-service="Meta Ads Management">
+                        <input type="checkbox" id="service-meta-ads" class="service-checkbox" data-price="500" data-service="Meta Ads Management" data-type="ads-management">
                         <label for="service-meta-ads">
                             <span class="service-name">Meta Ads Management</span>
-                            <span class="service-price">$500/month</span>
+                            <span class="service-price">From $500/month</span>
                         </label>
                     </div>
                     <div class="service-item">
-                        <input type="checkbox" id="service-google-ads" class="service-checkbox" data-price="500" data-service="Google Ads Management">
+                        <input type="checkbox" id="service-google-ads" class="service-checkbox" data-price="500" data-service="Google Ads Management" data-type="ads-management">
                         <label for="service-google-ads">
                             <span class="service-name">Google Ads Management</span>
-                            <span class="service-price">$500/month</span>
+                            <span class="service-price">From $500/month</span>
                         </label>
                     </div>
                     <div class="service-item">
@@ -266,12 +294,13 @@
 
                 <div class="custom-package-summary">
                     <div class="summary-content">
-                        <h4>Your Custom Package</h4>
+                        <h4>Your Estimated Monthly Investment</h4>
                         <div id="selected-services" class="selected-services-list"></div>
                         <div class="summary-total">
-                            <span>Total Monthly Cost:</span>
+                            <span>Estimated Monthly Total:</span>
                             <span id="total-cost" class="total-amount">$0</span>
                         </div>
+                        <p id="estimate-note" class="estimate-note">Select services above to build your estimate.</p>
                         <a href="#final-cta" class="package-cta custom-cta">Proceed with Custom Package</a>
                     </div>
                 </div>

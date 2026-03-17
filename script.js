@@ -1,6 +1,6 @@
-// Smooth scroll navigation (enhanced)
+// Smooth scroll navigation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
         if (href !== '#' && document.querySelector(href)) {
             e.preventDefault();
@@ -23,15 +23,36 @@ function initializeCustomServices() {
     const serviceCheckboxes = document.querySelectorAll('.service-checkbox');
     const selectedServicesList = document.getElementById('selected-services');
     const totalCostElement = document.getElementById('total-cost');
+    const estimateNoteElement = document.getElementById('estimate-note');
+    const monthlyAdSpendInput = document.getElementById('monthly-ad-spend');
     const customCTA = document.querySelector('.custom-cta');
 
-    // Add event listeners to checkboxes
-    serviceCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            updateServicesSummary();
-            updateCheckboxLabel(this);
-        });
-    });
+    function formatCurrency(value) {
+        return '$' + value.toLocaleString();
+    }
+
+    function getMonthlyAdSpend() {
+        if (!monthlyAdSpendInput) {
+            return 0;
+        }
+
+        const spend = parseInt(monthlyAdSpendInput.value, 10);
+        return Number.isNaN(spend) ? 0 : Math.max(spend, 0);
+    }
+
+    function getServiceEstimate(checkbox) {
+        const basePrice = parseInt(checkbox.getAttribute('data-price'), 10) || 0;
+        const serviceType = checkbox.getAttribute('data-type');
+
+        if (serviceType !== 'ads-management') {
+            return basePrice;
+        }
+
+        const monthlyAdSpend = getMonthlyAdSpend();
+        const spendBasedFee = Math.round(monthlyAdSpend * 0.08);
+
+        return Math.max(basePrice, spendBasedFee);
+    }
 
     function updateCheckboxLabel(checkbox) {
         const label = checkbox.nextElementSibling;
@@ -46,15 +67,17 @@ function initializeCustomServices() {
         serviceCheckboxes.forEach(checkbox => {
             if (checkbox.checked) {
                 const serviceName = checkbox.getAttribute('data-service');
-                const price = parseInt(checkbox.getAttribute('data-price'));
+                const price = getServiceEstimate(checkbox);
                 selectedServices.push({ name: serviceName, price: price });
                 totalCost += price;
             }
         });
 
-        // Update selected services list
         if (selectedServices.length === 0) {
             selectedServicesList.innerHTML = '<p style="color: var(--text-light); text-align: center;">Select services above to see them here</p>';
+            if (estimateNoteElement) {
+                estimateNoteElement.textContent = 'Select services above to build your estimate.';
+            }
             customCTA.style.opacity = '0.5';
             customCTA.style.pointerEvents = 'none';
         } else {
@@ -64,17 +87,20 @@ function initializeCustomServices() {
                     <div class="selected-service">
                         <span>${service.name}</span>
                         <span style="display: flex; align-items: center;">
-                            <span style="color: var(--primary-color); font-weight: 700;">$${service.price}</span>
-                            <span class="service-remove" data-service="${service.name}">✕</span>
+                            <span style="color: var(--primary-color); font-weight: 700;">${formatCurrency(service.price)}</span>
+                            <span class="service-remove" data-service="${service.name}">x</span>
                         </span>
                     </div>
                 `;
             });
             selectedServicesList.innerHTML = html;
+            if (estimateNoteElement) {
+                const spendText = formatCurrency(getMonthlyAdSpend());
+                estimateNoteElement.textContent = `Ad management services are estimated using ${spendText}/month in ad spend. Final pricing is confirmed after strategy review.`;
+            }
             customCTA.style.opacity = '1';
             customCTA.style.pointerEvents = 'auto';
 
-            // Add remove functionality
             document.querySelectorAll('.service-remove').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const serviceName = this.getAttribute('data-service');
@@ -89,10 +115,19 @@ function initializeCustomServices() {
             });
         }
 
-        // Update total cost
-        totalCostElement.textContent = '$' + totalCost.toLocaleString();
+        totalCostElement.textContent = formatCurrency(totalCost);
     }
 
-    // Initialize on load
+    serviceCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            updateServicesSummary();
+            updateCheckboxLabel(this);
+        });
+    });
+
+    if (monthlyAdSpendInput) {
+        monthlyAdSpendInput.addEventListener('input', updateServicesSummary);
+    }
+
     updateServicesSummary();
 }
