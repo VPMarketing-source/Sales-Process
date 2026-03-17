@@ -532,10 +532,11 @@ section {
 
 .service-item label {
     display: grid;
-    grid-template-columns: 20px minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 0.9rem;
-    min-height: 118px;
+    grid-template-columns: 20px minmax(0, 1fr);
+    align-items: start;
+    column-gap: 0.9rem;
+    row-gap: 0.7rem;
+    min-height: 132px;
     padding: 1.3rem 1.35rem;
     background: white;
     border: 1px solid #cfdae8;
@@ -575,6 +576,7 @@ section {
 }
 
 .service-name {
+    grid-column: 2;
     font-weight: 700;
     line-height: 1.45;
     color: #14213d;
@@ -582,15 +584,18 @@ section {
 }
 
 .service-price {
+    grid-column: 2;
     color: #1d4ed8;
     font-weight: 700;
     font-size: 1rem;
-    white-space: nowrap;
-    text-align: right;
+    white-space: normal;
+    text-align: left;
+    justify-self: start;
     background: #eff6ff;
     border: 1px solid #bfdbfe;
     padding: 0.55rem 0.75rem;
-    border-radius: 999px;
+    border-radius: 0.75rem;
+    line-height: 1.35;
 }
 
 .custom-package-summary {
