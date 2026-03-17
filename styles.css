@@ -444,6 +444,60 @@ section {
     color: #14213d;
 }
 
+.comparison-table td:first-child {
+    position: relative;
+}
+
+.feature-label {
+    margin-right: 0.5rem;
+}
+
+.info-dot {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.15rem;
+    height: 1.15rem;
+    border: 1px solid #bfd0e6;
+    border-radius: 999px;
+    background: #f8fbff;
+    color: #4f6b8b;
+    font-size: 0.72rem;
+    font-weight: 800;
+    line-height: 1;
+    cursor: help;
+    vertical-align: middle;
+}
+
+.info-dot::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 0.6rem);
+    transform: translateX(-50%);
+    width: min(260px, 70vw);
+    padding: 0.75rem 0.85rem;
+    border-radius: 0.8rem;
+    background: #14213d;
+    color: white;
+    font-size: 0.83rem;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: left;
+    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.18);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    z-index: 10;
+}
+
+.info-dot:hover::after,
+.info-dot:focus-visible::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-2px);
+}
+
 .comparison-table thead th {
     background: #f8fbff;
     font-weight: 800;
@@ -665,6 +719,16 @@ section {
     margin-bottom: 2rem;
 }
 
+.single-services-kicker {
+    text-align: center;
+    color: #1d4ed8;
+    font-size: 0.84rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.9rem;
+}
+
 .services-title {
     font-size: 1.95rem;
     font-weight: 800;
@@ -686,15 +750,26 @@ section {
 .single-services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.25rem;
+    gap: 1.5rem;
+    align-items: stretch;
 }
 
 .single-service-card {
-    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.65rem;
     background: white;
     border: 1px solid #dbe5f0;
     border-radius: 1rem;
     box-shadow: 0 16px 35px rgba(15, 23, 42, 0.05);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.single-service-card:hover {
+    transform: translateY(-4px);
+    border-color: #bfd0e6;
+    box-shadow: 0 22px 42px rgba(15, 23, 42, 0.09);
 }
 
 .single-service-top {
@@ -706,24 +781,56 @@ section {
 }
 
 .single-service-top h4 {
-    font-size: 1.15rem;
+    font-size: 1.18rem;
     color: #14213d;
+    line-height: 1.35;
 }
 
 .single-service-price {
     flex-shrink: 0;
-    padding: 0.45rem 0.7rem;
+    padding: 0.5rem 0.78rem;
     border-radius: 999px;
     background: #eff6ff;
     color: #1d4ed8;
     border: 1px solid #bfdbfe;
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     font-weight: 800;
+    text-align: right;
 }
 
 .single-service-card p {
     color: #475569;
     line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.single-service-benefit {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+    color: #14213d;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+.single-services-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 1.35rem 1.5rem;
+    border-radius: 1rem;
+    background: white;
+    border: 1px solid #dbe5f0;
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.05);
+}
+
+.single-services-cta p {
+    color: #334155;
+    font-weight: 600;
+    line-height: 1.6;
 }
 
 .estimator-intro {
@@ -955,6 +1062,11 @@ section {
 
     .single-service-top {
         flex-direction: column;
+    }
+
+    .single-services-cta {
+        flex-direction: column;
+        align-items: stretch;
     }
 
     .pricing-table {
