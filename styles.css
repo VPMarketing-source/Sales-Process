@@ -268,7 +268,7 @@ section {
 }
 
 .pricing-table th {
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1rem;
     text-align: center;
     font-weight: 600;
     border-right: 1px solid var(--border-color);
@@ -296,18 +296,20 @@ section {
     font-weight: 500;
     color: var(--text-dark);
     border-right: 2px solid var(--border-color);
-    width: 25%;
+    width: 24%;
 }
 
 .feature-column {
-    width: 25%;
+    width: 24%;
     text-align: left;
 }
 
 .starter-column,
 .growth-column,
-.scale-column {
-    width: 25%;
+.scale-column,
+.services-column,
+.custom-column {
+    width: 15.2%;
 }
 
 .package-header {
@@ -343,16 +345,17 @@ section {
 }
 
 .package-header .package-name {
-    font-size: 1.35rem;
+    font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
 }
 
 .package-header .package-price {
-    font-size: 2rem;
+    font-size: 1.55rem;
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 0.5rem;
+    line-height: 1.2;
 }
 
 .featured-header .package-price {
@@ -372,6 +375,7 @@ section {
     font-size: 0.85rem;
     color: var(--text-light);
     margin-bottom: 0;
+    line-height: 1.5;
 }
 
 .checkmark {
@@ -658,8 +662,10 @@ section {
 
     .starter-column,
     .growth-column,
-    .scale-column {
-        width: 21.67%;
+    .scale-column,
+    .services-column,
+    .custom-column {
+        width: auto;
     }
 
     .services-grid {
