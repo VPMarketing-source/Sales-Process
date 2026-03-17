@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPM Single Services Guide</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #14213d;
+            --blue: #2563eb;
+            --blue-soft: #eff6ff;
+            --text: #334155;
+            --muted: #64748b;
+            --border: #dbe5f0;
+            --bg: #f8fbff;
+            --success: #10b981;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background: white;
+            line-height: 1.6;
+        }
+
+        .page {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 48px 40px 60px;
+        }
+
+        .hero {
+            padding: 40px;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            background: linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%);
+            margin-bottom: 28px;
+        }
+
+        .brand {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            color: var(--navy);
+            font-size: 38px;
+            line-height: 1.15;
+        }
+
+        .hero p {
+            margin: 0;
+            font-size: 17px;
+            color: var(--text);
+            max-width: 720px;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .intro-card,
+        .summary-card {
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 24px;
+            background: white;
+        }
+
+        .intro-card h2,
+        .summary-card h2 {
+            margin: 0 0 12px;
+            color: var(--navy);
+            font-size: 22px;
+        }
+
+        .summary-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .summary-list li {
+            padding: 8px 0 8px 22px;
+            position: relative;
+        }
+
+        .summary-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .service-section {
+            margin-bottom: 22px;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 24px 28px;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .service-title-block h3 {
+            margin: 0 0 8px;
+            color: var(--navy);
+            font-size: 26px;
+        }
+
+        .service-benefit {
+            margin: 0;
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .service-price {
+            flex-shrink: 0;
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid #bfdbfe;
+            background: var(--blue-soft);
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .service-body {
+            padding: 24px 28px 28px;
+        }
+
+        .service-body p {
+            margin-top: 0;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .detail-card {
+            padding: 18px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: #fcfdff;
+        }
+
+        .detail-card h4 {
+            margin: 0 0 10px;
+            color: var(--navy);
+            font-size: 16px;
+        }
+
+        .detail-card ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .detail-card li {
+            margin-bottom: 8px;
+        }
+
+        .footer-note {
+            margin-top: 34px;
+            padding: 22px 24px;
+            border-radius: 18px;
+            background: #14213d;
+            color: white;
+        }
+
+        .footer-note h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
+        }
+
+        .footer-note p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        @media print {
+            .page {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <section class="hero">
+            <div class="brand">Valuable Partnership Marketing</div>
+            <h1>Single Services Guide</h1>
+            <p>This guide explains what each focused service actually includes, what outcomes it is designed to drive, and where it fits inside a broader growth strategy.</p>
+        </section>
+
+        <section class="intro-grid">
+            <div class="intro-card">
+                <h2>How To Use This Guide</h2>
+                <p>Not every business needs a full retainer from day one. Sometimes the fastest path forward is solving the biggest bottleneck first. These focused services are designed to improve performance, increase efficiency, and create measurable growth in one critical area.</p>
+            </div>
+            <div class="summary-card">
+                <h2>What You Can Expect</h2>
+                <ul class="summary-list">
+                    <li>Outcome-focused strategy, not disconnected tasks</li>
+                    <li>Clear priorities tied to revenue and efficiency</li>
+                    <li>Structured implementation and optimisation</li>
+                    <li>Expert guidance on what to fix first</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="service-section">
+            <div class="service-header">
+                <div class="service-title-block">
+                    <h3>Meta Ads Management</h3>
+                    <p class="service-benefit">Increase qualified leads and reduce wasted ad spend.</p>
+                </div>
+                <div class="service-price">Starting from $500/month</div>
+            </div>
+            <div class="service-body">
+                <p>This service is designed to turn Meta into a more predictable and efficient growth channel. The goal is not just to launch campaigns, but to improve return on ad spend, sharpen targeting, and help you generate better-quality leads or purchases from the same budget.</p>
+                <div class="detail-grid">
+                    <div class="detail-card">
+                        <h4>What You Get</h4>
+                        <ul>
+                            <li>Campaign planning aligned to your offer and funnel</li>
+                            <li>Audience testing and budget allocation</li>
+                            <li>Creative direction and ad messaging recommendations</li>
+                            <li>Ongoing optimisation based on performance data</li>
+                        </ul>
+                    </div>
+                    <div class="detail-card">
+                        <h4>Business Impact</h4>
+                        <ul>
+                            <li>Lower wasted spend on poor audiences or weak creative</li>
+                            <li>More reliable lead flow or ecommerce revenue</li>
+                            <li>Better visibility into what is driving performance</li>
+                            <li>Stronger foundations for scaling spend confidently</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-section">
+            <div class="service-header">
+                <div class="service-title-block">
+                    <h3>Google Ads Management</h3>
+                    <p class="service-benefit">Win more purchase-ready traffic with better ROI.</p>
+                </div>
+                <div class="service-price">Starting from $500/month</div>
+            </div>
+            <div class="service-body">
+                <p>This service focuses on capturing high-intent demand more efficiently. Rather than simply managing keywords, the work is aimed at improving lead quality, strengthening cost efficiency, and helping you convert search demand into measurable business results.</p>
+                <div class="detail-grid">
+                    <div class="detail-card">
+                        <h4>What You Get</h4>
+                        <ul>
+                            <li>Campaign structure planning for search, shopping, or lead gen</li>
+                            <li>Keyword targeting and query refinement</li>
+                            <li>Ad copy development and performance testing</li>
+                            <li>Bid, budget, and conversion optimisation</li>
+                        </ul>
+                    </div>
+                    <div class="detail-card">
+                        <h4>Business Impact</h4>
+                        <ul>
+                            <li>Improved access to high-intent buyers</li>
+                            <li>More efficient spend against valuable search demand</li>
+                            <li>Stronger conversion quality from paid search traffic</li>
+                            <li>Greater clarity around profitable keywords and campaigns</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-section">
+            <div class="service-header">
+                <div class="service-title-block">
+                    <h3>Email Marketing</h3>
+                    <p class="service-benefit">Lift repeat purchases and recover more lost sales.</p>
+                </div>
+                <div class="service-price">Starting from $400/month</div>
+            </div>
+            <div class="service-body">
+                <p>Email marketing is about turning your existing audience into a stronger revenue asset. This service helps improve retention, customer lifetime value, and campaign performance through smarter sequencing, stronger campaign planning, and better use of your owned data.</p>
+                <div class="detail-grid">
+                    <div class="detail-card">
+                        <h4>What You Get</h4>
+                        <ul>
+                            <li>Campaign planning for promotions, launches, and retention</li>
+                            <li>Flow recommendations for abandoned cart, welcome, and post-purchase</li>
+                            <li>Messaging strategy to improve engagement and conversion</li>
+                            <li>Guidance on segmentation and offer structure</li>
+                        </ul>
+                    </div>
+                    <div class="detail-card">
+                        <h4>Business Impact</h4>
+                        <ul>
+                            <li>Higher repeat revenue from your current audience</li>
+                            <li>Better recovery of missed purchase opportunities</li>
+                            <li>Stronger retention without relying only on ad spend</li>
+                            <li>More profit from the traffic you already generate</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-section">
+            <div class="service-header">
+                <div class="service-title-block">
+                    <h3>CRO Optimization</h3>
+                    <p class="service-benefit">Increase conversions without increasing media spend.</p>
+                </div>
+                <div class="service-price">Starting from $600/month</div>
+            </div>
+            <div class="service-body">
+                <p>This service improves how efficiently your website or landing pages convert traffic into leads or sales. The focus is on reducing friction, improving clarity, and increasing the percentage of visitors who take action.</p>
+                <div class="detail-grid">
+                    <div class="detail-card">
+                        <h4>What You Get</h4>
+                        <ul>
+                            <li>Conversion-focused page reviews and friction analysis</li>
+                            <li>Prioritised recommendations for layout, messaging, and UX</li>
+                            <li>Testing roadmap ideas for key pages and offers</li>
+                            <li>Ongoing refinement based on observed performance</li>
+                        </ul>
+                    </div>
+                    <div class="detail-card">
+                        <h4>Business Impact</h4>
+                        <ul>
+                            <li>Higher value from existing ad spend and traffic</li>
+                            <li>Improved lead-to-sale or visitor-to-purchase conversion rate</li>
+                            <li>Reduced leakage through weak pages or unclear offers</li>
+                            <li>Stronger confidence when scaling traffic into the funnel</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-section">
+            <div class="service-header">
+                <div class="service-title-block">
+                    <h3>Funnel Development</h3>
+                    <p class="service-benefit">Create a stronger buyer journey that converts more consistently.</p>
+                </div>
+                <div class="service-price">Starting from $1,000/month</div>
+            </div>
+            <div class="service-body">
+                <p>Funnel development focuses on building a cleaner and more effective path from click to conversion. This service helps improve lead flow, sales efficiency, and campaign profitability by strengthening the structure around your offers and landing experience.</p>
+                <div class="detail-grid">
+                    <div class="detail-card">
+                        <h4>What You Get</h4>
+                        <ul>
+                            <li>Offer flow and funnel structure review</li>
+                            <li>Landing page and conversion path recommendations</li>
+                            <li>Strategic improvements to reduce drop-off between steps</li>
+                            <li>Guidance for aligning traffic source, offer, and destination</li>
+                        </ul>
+                    </div>
+                    <div class="detail-card">
+                        <h4>Business Impact</h4>
+                        <ul>
+                            <li>Better conversion efficiency across your funnel</li>
+                            <li>Less wasted traffic due to poor user flow</li>
+                            <li>Stronger profitability from advertising activity</li>
+                            <li>More consistent movement from interest to action</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer-note">
+            <h3>Need Help Choosing?</h3>
+            <p>If you're not sure which service is the right starting point, the best next step is a strategy call. We can identify the highest-leverage opportunity for your business and recommend the most practical path forward.</p>
+        </section>
+    </main>
+</body>
+</html>

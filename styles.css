@@ -833,6 +833,22 @@ section {
     line-height: 1.6;
 }
 
+.single-services-cta-actions {
+    display: flex;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+}
+
+.package-cta-secondary {
+    background: white;
+    color: var(--primary-color);
+}
+
+.package-cta-secondary:hover {
+    background: #eff6ff;
+    color: var(--primary-dark);
+}
+
 .estimator-intro {
     display: grid;
     grid-template-columns: minmax(0, 1.6fr) minmax(240px, 1fr) minmax(240px, 1fr);
