@@ -12,57 +12,112 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Initialize page on load
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Landing page loaded successfully');
     initializeCustomServices();
 });
 
-// Custom Services Functionality
 function initializeCustomServices() {
     const serviceCheckboxes = document.querySelectorAll('.service-checkbox');
     const selectedServicesList = document.getElementById('selected-services');
     const totalCostElement = document.getElementById('total-cost');
     const estimateNoteElement = document.getElementById('estimate-note');
     const monthlyAdSpendInput = document.getElementById('monthly-ad-spend');
+    const emailSubscribersInput = document.getElementById('email-subscribers');
     const customCTA = document.querySelector('.custom-cta');
 
     function formatCurrency(value) {
         return '$' + value.toLocaleString();
     }
 
-    function getMonthlyAdSpend() {
-        if (!monthlyAdSpendInput) {
+    function getNumericValue(input) {
+        if (!input) {
             return 0;
         }
 
-        const spend = parseInt(monthlyAdSpendInput.value, 10);
-        return Number.isNaN(spend) ? 0 : Math.max(spend, 0);
+        const value = parseInt(input.value, 10);
+        return Number.isNaN(value) ? 0 : Math.max(value, 0);
+    }
+
+    function getMonthlyAdSpend() {
+        return getNumericValue(monthlyAdSpendInput);
+    }
+
+    function getEmailSubscribers() {
+        return getNumericValue(emailSubscribersInput);
+    }
+
+    function getEmailMarketingEstimate(basePrice, subscribers) {
+        if (subscribers <= 5000) {
+            return basePrice;
+        }
+        if (subscribers <= 10000) {
+            return 700;
+        }
+        if (subscribers <= 25000) {
+            return 1000;
+        }
+        if (subscribers <= 50000) {
+            return 1500;
+        }
+        return 2200;
+    }
+
+    function getSpendBasedEstimate(serviceName, basePrice, monthlyAdSpend) {
+        const multipliers = {
+            'Meta Ads Management': 0.08,
+            'Google Ads Management': 0.08,
+            'CRO and Testing': 0.03,
+            'Ad Creative Design': 0.025,
+            'Website Optimization': 0.04,
+            'Ad Copy Writing': 0.015
+        };
+
+        const multiplier = multipliers[serviceName];
+        if (!multiplier) {
+            return basePrice;
+        }
+
+        return Math.max(basePrice, Math.round(monthlyAdSpend * multiplier));
     }
 
     function getServiceEstimate(checkbox) {
         const basePrice = parseInt(checkbox.getAttribute('data-price'), 10) || 0;
         const serviceType = checkbox.getAttribute('data-type');
+        const serviceName = checkbox.getAttribute('data-service');
+        const monthlyAdSpend = getMonthlyAdSpend();
+        const emailSubscribers = getEmailSubscribers();
 
-        if (serviceType !== 'ads-management') {
-            return basePrice;
+        if (serviceType === 'ads-management' || serviceType === 'spend-based') {
+            return getSpendBasedEstimate(serviceName, basePrice, monthlyAdSpend);
         }
 
-        const monthlyAdSpend = getMonthlyAdSpend();
-        const spendBasedFee = Math.round(monthlyAdSpend * 0.08);
+        if (serviceType === 'email-marketing') {
+            return getEmailMarketingEstimate(basePrice, emailSubscribers);
+        }
 
-        return Math.max(basePrice, spendBasedFee);
+        return basePrice;
     }
 
-    function updateCheckboxLabel(checkbox) {
-        const label = checkbox.nextElementSibling;
-        const serviceName = checkbox.getAttribute('data-service');
-        label.querySelector('.service-name').textContent = serviceName;
+    function updateServiceCardPrices() {
+        serviceCheckboxes.forEach(checkbox => {
+            const label = checkbox.nextElementSibling;
+            const priceElement = label.querySelector('.service-price');
+            const estimate = getServiceEstimate(checkbox);
+            const serviceType = checkbox.getAttribute('data-type');
+
+            if (serviceType === 'ads-management' || serviceType === 'spend-based' || serviceType === 'email-marketing') {
+                priceElement.textContent = `Estimate ${formatCurrency(estimate)}/month`;
+            } else {
+                priceElement.textContent = `${formatCurrency(estimate)}/month`;
+            }
+        });
     }
 
     function updateServicesSummary() {
         const selectedServices = [];
         let totalCost = 0;
+
+        updateServiceCardPrices();
 
         serviceCheckboxes.forEach(checkbox => {
             if (checkbox.checked) {
@@ -76,7 +131,7 @@ function initializeCustomServices() {
         if (selectedServices.length === 0) {
             selectedServicesList.innerHTML = '<p style="color: var(--text-light); text-align: center;">Select services above to see them here</p>';
             if (estimateNoteElement) {
-                estimateNoteElement.textContent = 'Select services above to build your estimate.';
+                estimateNoteElement.textContent = 'Adjust your ad spend and subscriber count, then select services to build your estimate.';
             }
             customCTA.style.opacity = '0.5';
             customCTA.style.pointerEvents = 'none';
@@ -93,11 +148,13 @@ function initializeCustomServices() {
                     </div>
                 `;
             });
+
             selectedServicesList.innerHTML = html;
+
             if (estimateNoteElement) {
-                const spendText = formatCurrency(getMonthlyAdSpend());
-                estimateNoteElement.textContent = `Ad management services are estimated using ${spendText}/month in ad spend. Final pricing is confirmed after strategy review.`;
+                estimateNoteElement.textContent = `Current estimate uses ${formatCurrency(getMonthlyAdSpend())}/month in paid ad spend and ${getEmailSubscribers().toLocaleString()} email subscribers. Final pricing is confirmed after strategy review.`;
             }
+
             customCTA.style.opacity = '1';
             customCTA.style.pointerEvents = 'auto';
 
@@ -107,6 +164,7 @@ function initializeCustomServices() {
                     const checkboxToUncheck = Array.from(serviceCheckboxes).find(
                         cb => cb.getAttribute('data-service') === serviceName
                     );
+
                     if (checkboxToUncheck) {
                         checkboxToUncheck.checked = false;
                         updateServicesSummary();
@@ -119,14 +177,15 @@ function initializeCustomServices() {
     }
 
     serviceCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            updateServicesSummary();
-            updateCheckboxLabel(this);
-        });
+        checkbox.addEventListener('change', updateServicesSummary);
     });
 
     if (monthlyAdSpendInput) {
         monthlyAdSpendInput.addEventListener('input', updateServicesSummary);
+    }
+
+    if (emailSubscribersInput) {
+        emailSubscribersInput.addEventListener('input', updateServicesSummary);
     }
 
     updateServicesSummary();

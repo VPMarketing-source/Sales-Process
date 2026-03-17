@@ -245,17 +245,22 @@
 
             <div id="services-estimator" class="single-services-section">
                 <h3 class="services-title">Build an Estimated Monthly Scope</h3>
-                <p class="services-subtitle">Choose the services you need and use your monthly ad spend to generate a more realistic estimate.</p>
+                <p class="services-subtitle">Choose the services you need, then adjust the business variables below to build a more realistic estimate.</p>
 
                 <div class="estimator-intro">
                     <div class="estimator-copy">
-                        <h4>Ad management is quoted against account complexity</h4>
-                        <p>A business spending $100,000 per month needs a very different level of management than a smaller account. These figures are starting estimates, not fixed one-size-fits-all retainers.</p>
+                        <h4>Estimates change with account size and complexity</h4>
+                        <p>Paid media services scale with monthly ad spend, while email marketing scales with your subscriber base. These figures are starting estimates, not fixed one-size-fits-all retainers.</p>
                     </div>
                     <div class="spend-estimator">
                         <label for="monthly-ad-spend" class="spend-label">Estimated monthly ad spend</label>
                         <input type="number" id="monthly-ad-spend" min="0" step="1000" value="10000" placeholder="10000">
-                        <p class="spend-help">Used to estimate Meta and Google Ads management pricing.</p>
+                        <p class="spend-help">Used for Meta Ads, Google Ads, CRO, ad creative, website optimization, and ad copywriting.</p>
+                    </div>
+                    <div class="spend-estimator">
+                        <label for="email-subscribers" class="spend-label">Email subscribers</label>
+                        <input type="number" id="email-subscribers" min="0" step="1000" value="5000" placeholder="5000">
+                        <p class="spend-help">Used to estimate monthly email marketing management.</p>
                     </div>
                 </div>
 
@@ -275,14 +280,14 @@
                         </label>
                     </div>
                     <div class="service-item">
-                        <input type="checkbox" id="service-email" class="service-checkbox" data-price="400" data-service="Email Marketing (Klaviyo)">
+                        <input type="checkbox" id="service-email" class="service-checkbox" data-price="400" data-service="Email Marketing (Klaviyo)" data-type="email-marketing">
                         <label for="service-email">
                             <span class="service-name">Email Marketing (Klaviyo)</span>
                             <span class="service-price">$400/month</span>
                         </label>
                     </div>
                     <div class="service-item">
-                        <input type="checkbox" id="service-cro" class="service-checkbox" data-price="600" data-service="CRO and Testing">
+                        <input type="checkbox" id="service-cro" class="service-checkbox" data-price="600" data-service="CRO and Testing" data-type="spend-based">
                         <label for="service-cro">
                             <span class="service-name">CRO and Testing</span>
                             <span class="service-price">$600/month</span>
@@ -296,21 +301,21 @@
                         </label>
                     </div>
                     <div class="service-item">
-                        <input type="checkbox" id="service-creative" class="service-checkbox" data-price="600" data-service="Ad Creative Design">
+                        <input type="checkbox" id="service-creative" class="service-checkbox" data-price="600" data-service="Ad Creative Design" data-type="spend-based">
                         <label for="service-creative">
                             <span class="service-name">Ad Creative Design</span>
                             <span class="service-price">$600/month</span>
                         </label>
                     </div>
                     <div class="service-item">
-                        <input type="checkbox" id="service-website" class="service-checkbox" data-price="1000" data-service="Website Optimization">
+                        <input type="checkbox" id="service-website" class="service-checkbox" data-price="1000" data-service="Website Optimization" data-type="spend-based">
                         <label for="service-website">
                             <span class="service-name">Website Optimization</span>
                             <span class="service-price">$1,000/month</span>
                         </label>
                     </div>
                     <div class="service-item">
-                        <input type="checkbox" id="service-copy" class="service-checkbox" data-price="400" data-service="Ad Copy Writing">
+                        <input type="checkbox" id="service-copy" class="service-checkbox" data-price="400" data-service="Ad Copy Writing" data-type="spend-based">
                         <label for="service-copy">
                             <span class="service-name">Ad Copy Writing</span>
                             <span class="service-price">$400/month</span>
