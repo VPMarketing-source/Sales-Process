@@ -778,6 +778,7 @@ section {
     align-items: flex-start;
     gap: 0.8rem;
     margin-bottom: 1rem;
+    width: 100%;
 }
 
 .single-service-top h4 {
@@ -788,19 +789,20 @@ section {
 }
 
 .single-service-price {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 100%;
-    padding: 0.58rem 0.82rem;
+    width: 100%;
+    padding: 0.7rem 0.9rem;
     border-radius: 0.8rem;
     background: #eff6ff;
     color: #1d4ed8;
     border: 1px solid #bfdbfe;
-    font-size: 0.86rem;
+    font-size: 0.9rem;
     font-weight: 800;
-    text-align: left;
+    text-align: center;
     line-height: 1.35;
+    white-space: normal;
 }
 
 .single-service-card p {
