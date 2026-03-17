@@ -291,6 +291,40 @@ section {
     white-space: nowrap;
 }
 
+.implementation-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 1rem 1.2rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    border: 1px solid #cfe0f5;
+    border-radius: 1rem;
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.04);
+}
+
+.implementation-note::before {
+    content: "+";
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-top: 0.05rem;
+    border-radius: 999px;
+    background: #e0ecff;
+    color: #1d4ed8;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.implementation-note p {
+    color: #334155;
+    font-size: 0.98rem;
+    line-height: 1.65;
+}
+
 .pricing-overview {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -352,6 +386,17 @@ section {
     font-size: 0.95rem;
     color: #64748b;
     margin-left: 0.25rem;
+}
+
+.pricing-card-fee {
+    margin-top: -0.5rem;
+    padding: 0.65rem 0.85rem;
+    border-radius: 0.85rem;
+    background: #f8fbff;
+    border: 1px solid #dbe5f0;
+    color: #4f6b8b;
+    font-size: 0.88rem;
+    font-weight: 600;
 }
 
 .pricing-card-benefits {
@@ -1106,6 +1151,10 @@ section {
     .pricing-helper {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .implementation-note {
+        padding: 1rem;
     }
 
     .pricing-overview {
